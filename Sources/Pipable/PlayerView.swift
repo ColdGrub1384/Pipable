@@ -18,9 +18,7 @@ class PlayerView: UIView, AVPictureInPictureSampleBufferPlaybackDelegate, AVPict
     weak var delegate: PictureInPictureDelegate?
     
     var pipController: AVPictureInPictureController?
-    
-    var wasAudioSessionActive = false
-    
+        
     func pictureInPictureController(_ pictureInPictureController: AVPictureInPictureController, setPlaying playing: Bool) {
     }
     
