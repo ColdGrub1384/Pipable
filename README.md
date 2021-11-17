@@ -6,7 +6,7 @@ The "Audio, AirPlay and Picture in Picture" background mode must be enabled and 
 
 Usage:
 
-```
+```swift
 import Pipable
 import UIKit
 import AVKit
