@@ -4,6 +4,8 @@ Pipable is an iOS library to implement Picture in Picture for any `UIView`. This
 
 The "Audio, AirPlay and Picture in Picture" background mode must be enabled and an audio session must be active for PIP to work.
 
+**Updating the PIP snapshot in background, which is the whole point of PIP, doesn't work for the moment because I can't take a snapshot of a view in background if it's inside a window. But I am able to take a snapshot of a view that's not inside a window, so it shouldn't be that hard to make it work. But it's almost 5 am here so I'll try later :)**
+
 Requires iOS / iPadOS 15+.
 
 ![screenshot](screenshot.jpeg)
