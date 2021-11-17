@@ -10,6 +10,8 @@ Requires iOS / iPadOS 15+.
 
 ## Usage
 
+Create a `UIView` that conforms to `Pipable`. Start an audio session and then use the `pictureInPictureController` object automatically provided by the `Pipable` protocol to start PIP.
+
 ```swift
 import Pipable
 import UIKit
