@@ -28,6 +28,10 @@ class ViewController: UIViewController, UITextViewDelegate, PictureInPictureDele
     
     @IBAction func togglePIP(_ sender: Any) {
         
+        guard #available(iOS 15.0, *) else {
+            return
+        }
+        
         if textView.pictureInPictureController?.isPictureInPictureActive == false {
             
             // Start an audio session and PIP
@@ -63,14 +67,18 @@ class ViewController: UIViewController, UITextViewDelegate, PictureInPictureDele
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        textView.updatePictureInPictureSnapshot() // Update the snapshot
+        if #available(iOS 15.0, *) {
+            textView.updatePictureInPictureSnapshot() // Update the snapshot
+        }
     }
     
     // MARK: - Text view delegate
     
     func textViewDidChange(_ textView: UITextView) {
-        DispatchQueue.main.asyncAfter(deadline: .now()+0.1) {
-            self.textView.updatePictureInPictureSnapshot() // Update the snapshot
+        if #available(iOS 15.0, *) {
+            DispatchQueue.main.asyncAfter(deadline: .now()+0.1) {
+                self.textView.updatePictureInPictureSnapshot() // Update the snapshot
+            }
         }
     }
 

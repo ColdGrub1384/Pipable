@@ -4,6 +4,8 @@ Pipable is an iOS library to implement Picture in Picture for any `UIView`. This
 
 The "Audio, AirPlay and Picture in Picture" background mode must be enabled and an audio session must be active for PIP to work.
 
+Requires iOS / iPadOS 15+.
+
 Usage:
 
 ```swift

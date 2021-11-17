@@ -8,6 +8,7 @@
 import UIKit
 import AVKit
 
+@available(iOS 9.0, *)
 class PlayerView: UIView, AVPictureInPictureSampleBufferPlaybackDelegate, AVPictureInPictureControllerDelegate {
     
     override class var layerClass: AnyClass {

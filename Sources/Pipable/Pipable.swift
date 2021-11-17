@@ -5,6 +5,7 @@ import AVKit
 ///
 /// If a view conforms to this protocol, it is automatically compatible with Picture in Picture.
 /// An instance of `AVPictureInPictureController` is automatically created for the view, which allows entering and exiting PIP. Each time the content of the view is changed, you must call `updatePictureInPictureSnapshot`.
+@available(iOS 15.0, *)
 public protocol Pipable where Self: UIView {
     
     /// The delegate for the PIP events.
@@ -16,6 +17,7 @@ public protocol Pipable where Self: UIView {
     var previewSize: CGSize { get }
 }
 
+@available(iOS 15.0, *)
 extension Pipable {
     
     /// The Picture in Picture controller created automatically by conforming to `Pipable`. Use this object to start or exit PIP. Before entering PIP, the application must start a playback `AVAudioSession`, which requires a background mode.
@@ -36,6 +38,7 @@ extension Pipable {
 }
 
 /// A set of method to respond to PIP events.
+@available(iOS 9, *)
 public protocol PictureInPictureDelegate where Self: AnyObject {
     
     /// User entered PIP.
@@ -48,6 +51,7 @@ public protocol PictureInPictureDelegate where Self: AnyObject {
     func didFailToEnterPictureInPicture(error: Error)
 }
 
+@available(iOS 15.0, *)
 extension Pipable {
     
     var player: PlayerView? {
@@ -90,6 +94,7 @@ extension Pipable {
     }
 }
 
+@available(iOS 15.0, *)
 extension Pipable {
     
     func asImage() -> UIImage {
