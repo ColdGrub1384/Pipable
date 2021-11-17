@@ -55,7 +55,7 @@ public protocol PictureInPictureDelegate where Self: AnyObject {
 extension Pipable {
     
     var player: PlayerView? {
-        window?.subviews.first(where: { $0 is PlayerView }) as? PlayerView
+        subviews.first(where: { $0 is PlayerView }) as? PlayerView
     }
     
     func setupPlayerIfNeeded() {
@@ -66,7 +66,7 @@ extension Pipable {
             
             playerView.pipController?.canStartPictureInPictureAutomaticallyFromInline = true
             playerView.pipController?.delegate = playerView
-            window?.addSubview(playerView)
+            addSubview(playerView)
         }
         
         player?.delegate = pictureInPictureDelegate
