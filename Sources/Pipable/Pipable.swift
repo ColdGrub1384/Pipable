@@ -64,7 +64,6 @@ extension Pipable {
             playerView.isHidden = true
             playerView.pipController = AVPictureInPictureController(contentSource: .init(sampleBufferDisplayLayer: playerView.layer as! AVSampleBufferDisplayLayer, playbackDelegate: playerView))
             
-            playerView.pipController?.canStartPictureInPictureAutomaticallyFromInline = true
             playerView.pipController?.delegate = playerView
             addSubview(playerView)
         }
