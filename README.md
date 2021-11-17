@@ -6,7 +6,9 @@ The "Audio, AirPlay and Picture in Picture" background mode must be enabled and 
 
 Requires iOS / iPadOS 15+.
 
-Usage:
+[screenshot](screenshot.jpeg)
+
+## Usage
 
 ```swift
 import Pipable
