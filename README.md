@@ -23,7 +23,6 @@ class MyTextView: UITextView, Pipable {
 }
 
 let textView = MyTextView()
-textView.delegate = self
 textView.text = "Hello World!"
 
 // Update the snapshot (do this everytime the text is changed)
