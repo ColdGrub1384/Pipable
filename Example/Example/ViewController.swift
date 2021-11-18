@@ -20,7 +20,7 @@ class PipableTextView: UITextView, Pipable {
     }
 }
 
-class ViewController: UIViewController, UITextViewDelegate, PictureInPictureDelegate {
+class ViewController: UIViewController, PictureInPictureDelegate {
 
     @IBOutlet weak var textView: PipableTextView!
     
@@ -62,6 +62,15 @@ class ViewController: UIViewController, UITextViewDelegate, PictureInPictureDele
         pipBarButtonItem.isEnabled = AVPictureInPictureController.isPictureInPictureSupported()
         
         textView.pictureInPictureDelegate = self // Set the PIP delegate
+        
+        var i = 0
+        _ = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true, block: { _ in
+            self.textView.text += "\(i)\n"
+            if #available(iOS 15.0, *) {
+                self.textView.updatePictureInPictureSnapshot()
+            }
+            i += 1
+        })
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -69,16 +78,6 @@ class ViewController: UIViewController, UITextViewDelegate, PictureInPictureDele
         
         if #available(iOS 15.0, *) {
             textView.updatePictureInPictureSnapshot() // Update the snapshot
-        }
-    }
-    
-    // MARK: - Text view delegate
-    
-    func textViewDidChange(_ textView: UITextView) {
-        if #available(iOS 15.0, *) {
-            DispatchQueue.main.asyncAfter(deadline: .now()+0.1) {
-                self.textView.updatePictureInPictureSnapshot() // Update the snapshot
-            }
         }
     }
 

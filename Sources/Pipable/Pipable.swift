@@ -109,6 +109,12 @@ extension Pipable {
             }
         }
         
+        let superview = self.superview
+        let index = self.subviews.firstIndex(of: self)
+        if window?.windowScene?.activationState == .background {
+            removeFromSuperview()
+        }
+        
         let renderer = UIGraphicsImageRenderer(bounds: bounds)
 
         let image = renderer.image {
@@ -119,6 +125,10 @@ extension Pipable {
         
         if offset != nil {
             (self as? UIScrollView)?.contentOffset = offset!
+        }
+        
+        if self.superview == nil {
+            superview?.insertSubview(self, at: index ?? 0)
         }
         
         return image
