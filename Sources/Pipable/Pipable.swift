@@ -15,6 +15,12 @@ public protocol Pipable where Self: UIView {
     /// You can return the size of the target view to keep the same aspect ratio, but text content may not be easily readable.
     /// You can also return a different size. If you do so, the view will be resized while taking the snapshots.
     var previewSize: CGSize { get }
+    
+    /// Called before a snapshot is taken. Setup the view if necessary.
+    func willTakeSnapshot()
+    
+    /// Called after taking a snapshot. Undo the changes done on `willTakeSnapshot` if necessary.
+    func didTakeSnapshot()
 }
 
 @available(iOS 15.0, *)
@@ -33,7 +39,10 @@ extension Pipable {
         
         player?.frame.size = frame.size
         (player?.layer as? AVSampleBufferDisplayLayer)?.flush()
+        
+        willTakeSnapshot()
         (player?.layer as? AVSampleBufferDisplayLayer)?.enqueue(getSnapshot())
+        didTakeSnapshot()
     }
 }
 

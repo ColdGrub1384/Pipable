@@ -24,6 +24,12 @@ class MyTextView: UITextView, Pipable {
     var previewSize: CGSize {
         CGSize(width: 512, height: 512)
     }
+    
+    func willTakeSnapshot() {
+    }
+    
+    func didTakeSnapshot() {
+    }
 }
 
 let textView = MyTextView()

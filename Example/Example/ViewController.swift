@@ -18,6 +18,12 @@ class PipableTextView: UITextView, Pipable {
     var previewSize: CGSize {
         CGSize(width: 512, height: 512) // More readable
     }
+    
+    func willTakeSnapshot() {
+    }
+    
+    func didTakeSnapshot() {
+    }
 }
 
 class ViewController: UIViewController, PictureInPictureDelegate {
