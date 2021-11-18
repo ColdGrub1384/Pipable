@@ -35,6 +35,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="PIP Example" largeTitleDisplayMode="always" id="1f2-MC-MqZ">
+                        <barButtonItem key="leftBarButtonItem" image="pause.fill" catalog="system" id="Jow-S2-Loj">
+                            <connections>
+                                <action selector="togglePlay:" destination="BYZ-38-t0r" id="Uo6-Pt-bG1"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Item" image="pip.enter" catalog="system" id="8mS-0C-l1f">
                             <connections>
                                 <action selector="togglePIP:" destination="BYZ-38-t0r" id="91f-dR-fA4"/>
@@ -43,6 +48,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="pipBarButtonItem" destination="8mS-0C-l1f" id="lCG-rn-hx7"/>
+                        <outlet property="playPauseButtonItem" destination="Jow-S2-Loj" id="T52-lh-Ise"/>
                         <outlet property="textView" destination="BVV-tq-EsS" id="FYq-1u-q2x"/>
                     </connections>
                 </viewController>
@@ -70,6 +76,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="pause.fill" catalog="system" width="116" height="128"/>
         <image name="pip.enter" catalog="system" width="128" height="96"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

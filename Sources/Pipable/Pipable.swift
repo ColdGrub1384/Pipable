@@ -58,6 +58,15 @@ public protocol PictureInPictureDelegate where Self: AnyObject {
     
     /// PIP failed to start.
     func didFailToEnterPictureInPicture(error: Error)
+    
+    /// Called when the user presses the pause button.
+    func didPause()
+    
+    /// Called when the user presses the resume button.
+    func didResume()
+    
+    /// Return`true` to show the pause button and `false` to show the play button.
+    var isPlaying: Bool { get }
 }
 
 @available(iOS 15.0, *)
@@ -70,6 +79,7 @@ extension Pipable {
     func setupPlayerIfNeeded() {
         if player == nil {
             let playerView = PlayerView()
+            playerView.delegate = pictureInPictureDelegate
             playerView.isHidden = true
             playerView.pipController = AVPictureInPictureController(contentSource: .init(sampleBufferDisplayLayer: playerView.layer as! AVSampleBufferDisplayLayer, playbackDelegate: playerView))
             

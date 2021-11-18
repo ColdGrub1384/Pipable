@@ -60,23 +60,49 @@ class ViewController: UIViewController, PictureInPictureDelegate {
         }
     }
     
+    // MARK: - Timer
+    
+    @IBOutlet weak var playPauseButtonItem: UIBarButtonItem!
+    
+    @IBAction func togglePlay(_ sender: UIBarButtonItem) {
+        if isPlaying {
+            didPause()
+        } else {
+            didResume()
+        }
+        if #available(iOS 15.0, *) {
+            textView.pictureInPictureController?.invalidatePlaybackState() // Update the playback state
+        }
+    }
+    
+    var timer: Timer!
+    
+    var i = 0
+    
+    func startTimer() {
+        timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true, block: { [weak self] timer in
+            guard let self = self else {
+                return timer.invalidate()
+            }
+            
+            self.textView.text += "\(self.i)\n"
+            if #available(iOS 15.0, *) {
+                self.textView.updatePictureInPictureSnapshot()
+            }
+            self.i += 1
+        })
+    }
+    
     // MARK: - View controller
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        startTimer()
+        
         pipBarButtonItem.isEnabled = AVPictureInPictureController.isPictureInPictureSupported()
         
         textView.pictureInPictureDelegate = self // Set the PIP delegate
-        
-        var i = 0
-        _ = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: true, block: { _ in
-            self.textView.text += "\(i)\n"
-            if #available(iOS 15.0, *) {
-                self.textView.updatePictureInPictureSnapshot()
-            }
-            i += 1
-        })
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -105,6 +131,20 @@ class ViewController: UIViewController, PictureInPictureDelegate {
     
     func didFailToEnterPictureInPicture(error: Error) {
         print(error.localizedDescription)
+    }
+    
+    func didPause() {
+        playPauseButtonItem.image = UIImage(systemName: "play.fill")
+        timer.invalidate()
+    }
+    
+    func didResume() {
+        playPauseButtonItem.image = UIImage(systemName: "pause.fill")
+        startTimer()
+    }
+    
+    var isPlaying: Bool {
+        timer.isValid == true
     }
 }
 

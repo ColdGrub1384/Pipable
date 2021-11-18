@@ -20,6 +20,11 @@ class PlayerView: UIView, AVPictureInPictureSampleBufferPlaybackDelegate, AVPict
     var pipController: AVPictureInPictureController?
         
     func pictureInPictureController(_ pictureInPictureController: AVPictureInPictureController, setPlaying playing: Bool) {
+        if playing {
+            delegate?.didResume()
+        } else {
+            delegate?.didPause()
+        }
     }
     
     func pictureInPictureControllerTimeRangeForPlayback(_ pictureInPictureController: AVPictureInPictureController) -> CMTimeRange {
@@ -27,7 +32,7 @@ class PlayerView: UIView, AVPictureInPictureSampleBufferPlaybackDelegate, AVPict
     }
     
     func pictureInPictureControllerIsPlaybackPaused(_ pictureInPictureController: AVPictureInPictureController) -> Bool {
-        false
+        !(delegate?.isPlaying ?? true)
     }
     
     func pictureInPictureController(_ pictureInPictureController: AVPictureInPictureController, didTransitionToRenderSize newRenderSize: CMVideoDimensions) {
