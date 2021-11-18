@@ -37,7 +37,7 @@ class ViewController: UIViewController, PictureInPictureDelegate {
             // Start an audio session and PIP
             
             do {
-                try AVAudioSession.sharedInstance().setCategory(.playback)
+                try AVAudioSession.sharedInstance().setCategory(.playback, options: .mixWithOthers)
                 try AVAudioSession.sharedInstance().setActive(true, options: [])
             } catch {
                 print(error.localizedDescription)
